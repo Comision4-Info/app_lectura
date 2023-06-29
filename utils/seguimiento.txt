@@ -1,0 +1,38 @@
+~~ App de lectores ~~
+* Creamos un entorno -> 'python -m virtualenv <nombre_entorno>
+* Activamos el entorno
+* Instalamos las dependencias del archivo de requerimientos
+* Creamos un nuevo proyecto(en una carpeta distinta a la del entorno)
+* Creamos las apps dentro de la carpeta apps *-opcional la carpeta
+* Creamos una carpeta llamada templates
+* Creamos una carpeta llamada static
+* Creamos una carpeta llamada media
+* Creamos una carpeta llamada utils
+* Configuraciones:
+- TEMPLATES - DIRS -> indicar donde esta la carpeta templates
+- INSTALLED_APPS -> agregar las apps que creamos(sus rutas ej. : 'apps.nombre_de_la_app',)
+- STATICFILES_DIRS -> indicar donde estan los archivos css, js y demás 
+- MEDIA_ROOT -> indicar dónde se guardará todo lo relacionado con imagenes o videos que se cargan desde el servidor
+- MEDIA_URL -> url para acceder al directorio media
+- TIME_ZONE -> cambio a Buenos_Aires
+- LANGUAGE_CODE -> 'es-ar'
+- AUTH_USER_MODEL -> cual va ser el modelo usuario (ej: 'usuarios.Usuario')
+- DATABASES -> un dict con otro dict dentro con las config de la bd. ej:
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.mysql",
+            "NAME": '<nombre_de_la_bd>',
+            "USER": '<usuario>',
+            "PASSWORD": '<contraseña>',
+            "PORT": '3306'
+        }
+    }
+* Dentro de las apps:
+- Models -> defino la clase con sus atributos y métodos
+- Admins -> registro en panel django cada app
+- Views -> definimos como se mostrará nuestro contenido
+- Creamos urls.py -> importamos todas las vistas de mis apps y las utilizamos en paths que previamente fueron incluidos en las urls generales
+* Definimos en una variable el namespace ej. app_name = 'apps.nombre_de_la_app'
+* Creamos un archivo para opcionalmente crear forms -> forms.py
+* Creamos los templates de cada vista y los vamos utilizando
+** A medida que vayamos desarrollando la app nos va a pedir instalar distintas dependencias como mysqlclient, pillow, etc.
