@@ -1,4 +1,5 @@
 from pathlib import Path
+from django.urls import reverse_lazy
 
 
 
@@ -8,6 +9,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = "django-insecure-5u#n@z7$!s8z412e_s#ja9i3g-cl_y$+f)!x=m_@7jl$jefk6h"
 #-----------------------------------------------------------------------------------
 AUTH_USER_MODEL = 'usuarios.Usuarios'
+#-----------------------------------------------------------------------------------
+LOGIN_URL          = reverse_lazy('apps.usuarios:iniciar_sesion')
+LOGIN_REDIRECT_URL = reverse_lazy('inicio')
+LOGOUT_REDIRECT_URL= reverse_lazy('inicio')
 #-----------------------------------------------------------------------------------
 DEBUG = True
 #-----------------------------------------------------------------------------------
@@ -93,6 +98,7 @@ STATIC_URL = "static/"
 STATICFILES_DIRS = [
     BASE_DIR / 'static',
 ]
+STATIC_ROOT      = BASE_DIR / "staticfiles"
 #-----------------------------------------------------------------------------------
 MEDIA_URL = "/media/"
 MEDIA_ROOT = BASE_DIR / "media"

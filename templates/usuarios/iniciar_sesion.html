@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block navegacion %}
+{% include 'navegacion.html' %}
+{% endblock %}
+
+{% block titulo %}
+<title>Inicio de sesión</title>
+{% endblock %}
+
+{% block contenido %}
+
+<div class="inicio_sesion">
+    <form method="post">{% csrf_token %}
+        <section style="margin-top: 5%;" data-bs-version="5.1" class="form4 cid-tf6M1H8RDD mbr-fullscreen"
+            id="form4-11">
+            <div class="container">
+                <div class="row content-wrapper justify-content-center">
+                    <div class="col-lg-3 offset-lg-1 mbr-form" data-form-type="formoid">
+                        <div class="dragArea row">
+                            <div class="col-lg-12 col-md-12 col-sm-12">
+                                <h1 class="mbr-section-title mb-4 display-2"><strong>Iniciar sesión</strong></h1>
+                            </div>
+                            <div class="col-lg-12 col-md-12 col-sm-12">
+                                <p class="mbr-text mbr-fonts-style mb-4 display-7">Ingrese su usuario y contraseña:
+                                </p>
+                            </div>
+                            {{form.as_p}}
+                            <input type="submit" value="Iniciar sesión">
+                        </div>
+                    </div>
+                    <div class="col-lg-7 offset-lg-1 col-12">
+                        <div class="image-wrapper">
+                            <img class="w-75" src="{% static 'img/inicio_sesion.jpg' %}" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </form>
+</div>
+
+{% endblock %}

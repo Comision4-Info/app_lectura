@@ -1,7 +1,11 @@
 {% extends 'base.html' %}
+
 {% block title %}
 <title>Inicio</title>
 {% endblock %}
-{% block contenido %}
-<a class="btn btn-primary" href="{% url 'apps.usuarios:registrar' %}" role="button">Registrarse</a>
+
+{% block navegacion %}
+<!-- Barra de Navegación -->
+{% include 'navegacion.html' %}
 {% endblock %}
+
