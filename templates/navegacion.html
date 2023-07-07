@@ -5,25 +5,31 @@
             {% if user.is_authenticated %}
 
             <!-- img src="{{ user.imagen.url }}" alt="" -->
+            <div class="list-group-item d-flex gap-3 py-3" aria-current="true">
+                <img src="{{ user.imagen.url }}" alt="perfil" width="40" height="40"
+                    class="rounded-circle flex-shrink-0">
+                <li class="nav-item">
+                <li class="nav-item">
+                    <a class="nav-link" aria-current="page" href="#">{{user.username}}</a>
+                </li>
 
-            <li class="nav-item">
-                <a class="nav-link" aria-current="page" href="#">{{user.username}}</a>
-            </li>
+                <li class="nav-item">
+                    <a class="nav-link" aria-current="page" href="{% url 'apps.usuarios:cerrar_sesion' %}">Cerrar
+                        Sesión</a>
+                </li>
+                {% else %}
+                <li class="nav-item">
+                    <a class="nav-link" aria-current="page" href="#">Inicio</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'apps.usuarios:registrar' %}">Registrarse</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'apps.usuarios:iniciar_sesion' %}">Iniciar Sesión</a>
+                </li>
 
-            <li class="nav-item">
-                <a class="nav-link" aria-current="page" href="{% url 'apps.usuarios:cerrar_sesion' %}">Cerrar Sesión</a>
-            </li>
-            {% else %}
-            <li class="nav-item">
-                <a class="nav-link" aria-current="page" href="#">Inicio</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{% url 'apps.usuarios:registrar' %}">Registrarse</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{% url 'apps.usuarios:iniciar_sesion' %}">Iniciar Sesión</a>
-            </li>
-            {% endif %}
+                {% endif %}
+
         </ul>
         <div class="navbar-brand" href="#">
             <img src="{% static 'img/logo.png' %}" alt="">
@@ -38,7 +44,7 @@
                     <a class="nav-link active" aria-current="page" href="#">Inicio</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Libros</a>
+                    <a class="nav-link" href="{% url 'apps.libros:listar_libros' %}">Libros</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'apps.usuarios:registrar' %}">Registrarme</a>
@@ -50,9 +56,12 @@
                         Colaborador
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Agregar libro</a></li>
+                        <li><a class="dropdown-item" href="{% url 'apps.libros:agregar_categoria' %}">Agregar
+                                categoria</a></li>
+                        <li><a class="dropdown-item" href="{% url 'apps.libros:agregar_libro' %}">Agregar libro</a></li>
                         <li><a class="dropdown-item" href="#">Modificar libro</a></li>
-                        <li><a class="dropdown-item" href="{% url 'apps.usuarios:listar_usuarios' %}">Listar usuarios</a></li>
+                        <li><a class="dropdown-item" href="{% url 'apps.usuarios:listar_usuarios' %}">Listar
+                                usuarios</a></li>
                     </ul>
                 </li>
                 {% endif %}

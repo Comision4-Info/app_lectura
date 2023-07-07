@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block navegacion %}
+{% include 'navegacion.html' %}
+{% endblock %}
+
+{% block contenido %}
+<div class="main-container" style="text-align: center; margin-top: 12%;">
+    <form action="" method="POST" enctype="multipart/form-data">
+        <form method="post">{% csrf_token %}
+            <div class="overlay">
+                <form>
+                    <div class="con">
+                        <header class="head-form">
+                            <h2>Agregar libro</h2>
+                            <p>Ingrese los datos y presione el botón de guardar, luego podrá ver su libro en la sección
+                                libros:</p>
+                        </header>
+                        <div>
+                            {{form.as_p}}
+                            {{form.media}}
+
+                            <input class="btn btn-outline-secondary" type="submit" data-bs-toggle="modal"
+                                style="text-align: center;" data-bs-target="#exampleModal" value="Guardar libro" />
+                            <!-- Modal -->
+                            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                                aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Libro cargado</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            Su libro fue cargado con éxito!
+                                        </div>
+                                        <div class="modal-footer">
+                                            <a class="btn btn-outline-secondary" href="{% url 'inicio' %}">Volver al
+                                                inicio</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </form>
+    </form>
+</div>
+{% endblock %}

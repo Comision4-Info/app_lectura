@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block titulo %}
+<title>Libros</title>
+{% endblock %}
+
+{% block navegacion %}
+{% include 'navegacion.html' %}
+{% for i in categorias %}
+<li class="nav-item">
+    <a class="nav-link" aria-current="page" href="#">{{i.nombre}}</a>
+</li>
+{% endfor %}
+{% endblock %}
+
+{% block contenido %}
+{% if libros %}
+<div class="container-fluid" style="margin-top: 2%">
+    <div class="mbr-section-head">
+        <h3 class="mbr-section-title mbr-fonts-style align-center mb-0 display-2" style="text-align: center;">
+            <strong>Libros</strong>
+        </h3>
+    </div>
+
+    {% for p in libros %}
+    <div class="card-group">
+        <div class="card mb-8" style="width: 50%; margin-top: 1%; margin-bottom: 1%; text-align: center;">
+            <div class="card-img-top" style="display: block; width: 70%; margin: auto;">
+                <img src="{{ p.imagen.url }}" class="card-img-top w-50" alt="{{p.titulo}}">
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">{{p.titulo}}</h5>
+                <p style='text-align: center;' class="mbr-timeline-date "><small
+                        class="text-body-secondary">{{p.fecha_agregado}}</small></p>
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">Genero: {{p.categoria}}</li>
+                <li class="list-group-item">Autor: {{p.autor}}</li>
+                <li class="list-group-item">Agregado por: {{p.colaborador}}</li>
+            </ul>
+            <div class="card-body">
+                <p><a href="{% url 'apps.libros:libro_detalle' p.pk %}" class="btn btn-primary"
+                        style="font-size: small;">Leer más</a>
+            </div>
+        </div>
+    </div>
+    {% endfor %}{% endif %}
+    {% endblock %}
