@@ -12,7 +12,8 @@ urlpatterns = [
     path("agregar_categoria/", AgregarCategoria.as_view(),name='agregar_categoria'),
     path("agregar_libro/", AgregarLibro.as_view(), name='agregar_libro'),
     path("listar_libros/", ListarLibros.as_view(), name='listar_libros'),
-    path("libro_detalle/<int:pk>", LibroDetalle.as_view(), name='libro_detalle'),
+    path("listar_por_categoria/<str:categoria>", ListarLibrosPorCategoria, name='listar_por_categoria'),
+    path("libro_detalle/<int:id>", libro_detalle, name='libro_detalle'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 urlpatterns += staticfiles_urlpatterns()

@@ -28,7 +28,27 @@
                     <p class="mbr-text mbr-fonts-style display-7">{{libro.descripcion}}</p>
                 </div>
             </div>
+            {% for item in opiniones %}
+            <div class="row justify-content-md-center ">
+                <div class="col-md-6">
+                    <div class="list-group-item d-flex gap-3 py-3" aria-current="true">
+                        <img src="{{ item.usuario.imagen.url }}" style="width:10%; height: 10%;" alt="twbs" width="40"
+                            height="40" class="rounded-circle flex-shrink-0">
+                        <div class="d-flex gap-2 w-100 justify-content-between">
+                            <div>
+                                <h6 class="mb-0">{{ item.usuario.username }}</h6>
+                                <p class="mb-0 text-break opacity-75">{{ item.texto }}</p>
+                            </div>
+                            <small class="opacity-50 text-nowrap">{{ item.fecha }}</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
+            {% endfor %}
+            <div class="mb-3 display-7">
+                {% include 'opiniones/agregar_opinion.html' %}
+            </div>
         </div>
     </div>
 </section>

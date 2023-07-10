@@ -1,0 +1,41 @@
+<div class="row justify-content-md-center ">
+    <div class="col-md-6">
+        <div class="list-group-item gap-3 py-3" aria-current="true">
+            <form method="POST" enctype="multipart/form-data">{%csrf_token%}
+                <div>
+                    {{form.as_p}}
+                </div>
+                {% if user.is_authenticated %}
+                <input class="btn btn-outline-secondary" type="submit" value="Opinar" />
+                {% else %}
+                <button type="button" class="btn btn-outline-secondary" data-bs-toggle="modal"
+                    data-bs-target="#exampleModal">
+                    Opinar
+                </button>
+                <!-- Modal -->
+                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Error</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                Usted tiene que iniciar sesión o registrarse para poder opinar
+                            </div>
+                            <div class="modal-footer">
+                                <a class="btn btn-outline-secondary" href="{% url 'apps.usuarios:iniciar_sesion' %}"
+                                    target="_blank">Iniciar sesión</a>
+                                <a class="btn btn-outline-secondary" href="{% url 'apps.usuarios:registrar' %}"
+                                    target="_blank">Registrarse</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+            </form>
+        </div>
+    </div>
+</div>

@@ -30,6 +30,7 @@ INSTALLED_APPS = [
     #Apps
     'apps.usuarios',
     'apps.libros',
+    'apps.opiniones',
 ]
 #-----------------------------------------------------------------------------------
 MIDDLEWARE = [

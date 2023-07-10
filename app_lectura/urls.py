@@ -11,6 +11,7 @@ urlpatterns = [
     path("inicio/", inicio, name='inicio'),
     path("usuarios/", include('apps.usuarios.urls')),
     path("libros/", include('apps.libros.urls')),
+    path("opiniones/", include('apps.opiniones.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 urlpatterns += staticfiles_urlpatterns()
