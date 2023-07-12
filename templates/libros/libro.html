@@ -10,47 +10,70 @@
 {% endblock %}
 
 {% block contenido %}
-<section data-bs-version="5.1" class="image1 cid-tf6nPGwDQN" id="image1-q">
-    <div class="container">
-        <div class="row align-items-center">
-            <div class="col-12 col-lg-6">
-                <div class="image-wrapper">
-                    <img src="{{ libro.imagen.url }}" class="d-block w-100">
-                    <p style='text-align: center;' class="mbr-timeline-date "><small
-                            class="text-body-secondary">{{libro.fecha_agregado}}</small></p>
+{% if user.es_colaborador %}
+<div class="dropdown">
+    <button class="btn btn-outline-secondary dropdown-toggle " type="button" id="dropdownMenuButton1"
+        data-bs-toggle="dropdown" aria-expanded="false">Administrar</button>
+    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+        <li><a class="dropdown-item" href="{% url 'apps.libros:modificar_libro' libro.pk %}">Modificar libro</a></li>
+        <li><a class="dropdown-item" href="{% url 'apps.libros:eliminar_libro' libro.pk %}">Eliminar libro</a></li>
+    </ul>{% endif %}
+    <section data-bs-version="5.1" class="image1 cid-tf6nPGwDQN" id="image1-q">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-12 col-lg-6">
+                    <div class="image-wrapper">
+                        <img src="{{ libro.imagen.url }}" class="d-block w-100">
+                        <p style='text-align: center;' class="mbr-timeline-date "><small
+                                class="text-body-secondary">{{libro.fecha_agregado}}</small></p>
+                    </div>
                 </div>
-            </div>
-            <div class="col-12 col-lg">
-                <div class="text-wrapper">
-                    <h2 class="mbr-section-title mbr-fonts-style mb-3 display-5"><strong>{{libro.titulo}}</strong>
-                    </h2>
-                    <h4 class="mbr-section-title mbr-fonts-style mb-3 "><i>{{libro.autor}}</i></h4>
-                    <p class="mbr-text mbr-fonts-style display-7">{{libro.descripcion}}</p>
+                <div class="col-12 col-lg">
+                    <div class="text-wrapper">
+                        <h2 class="mbr-section-title mbr-fonts-style mb-3 display-5"><strong>{{libro.titulo}}</strong>
+                        </h2>
+                        <h4 class="mbr-section-title mbr-fonts-style mb-3 "><i>{{libro.autor}}</i></h4>
+                        <p class="mbr-text mbr-fonts-style display-7">{{libro.descripcion}}</p>
+                    </div>
                 </div>
-            </div>
-            {% for item in opiniones %}
-            <div class="row justify-content-md-center ">
-                <div class="col-md-6">
-                    <div class="list-group-item d-flex gap-3 py-3" aria-current="true">
-                        <img src="{{ item.usuario.imagen.url }}" style="width:10%; height: 10%;" alt="twbs" width="40"
-                            height="40" class="rounded-circle flex-shrink-0">
-                        <div class="d-flex gap-2 w-100 justify-content-between">
-                            <div>
-                                <h6 class="mb-0">{{ item.usuario.username }}</h6>
-                                <p class="mb-0 text-break opacity-75">{{ item.texto }}</p>
+                {% for item in opiniones %}
+                {% if user.is_authenticated and user.id == item.usuario.id%}
+                <div class="dropdown">
+                    <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        Opinion
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <li><a class="dropdown-item"
+                                href="{% url 'apps.opiniones:modificar_opinion' item.pk %}">Modificar
+                                opinion</a></li>
+                        <li><a class="dropdown-item" href="{% url 'apps.opiniones:eliminar_opinion' item.pk %}">Eliminar
+                                opinion</a></li>
+                    </ul>
+                    {% endif %}
+                </div>
+                <div class="row justify-content-md-center ">
+                    <div class="col-md-6">
+                        <div class="list-group-item d-flex gap-3 py-3" aria-current="true">
+                            <img src="{{ item.usuario.imagen.url }}" style="width:10%; height: 10%;" alt="twbs"
+                                width="40" height="40" class="rounded-circle flex-shrink-0">
+                            <div class="d-flex gap-2 w-100 justify-content-between">
+                                <div>
+                                    <h6 class="mb-0">{{ item.usuario.username }}</h6>
+                                    <p class="mb-0 text-break opacity-75">{{ item.texto }}</p>
+                                </div>
+                                <small class="opacity-50 text-nowrap">{{ item.fecha }}</small>
                             </div>
-                            <small class="opacity-50 text-nowrap">{{ item.fecha }}</small>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            {% endfor %}
-            <div class="mb-3 display-7">
-                {% include 'opiniones/agregar_opinion.html' %}
+                {% endfor %}
+                <div class="mb-3 display-7">
+                    {% include 'opiniones/agregar_opinion.html' %}
+                </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
-{%endblock %}
+    {%endblock %}

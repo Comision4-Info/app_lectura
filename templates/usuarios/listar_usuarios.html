@@ -9,7 +9,8 @@
     <h2 style="text-align:center; margin-top: 8%;"><strong>Usuarios:</strong></h2>
     <div class="container">
         {% for item in usuarios %}
-        <a class="btn btn-primary" style="width: 100%;" href="#">Eliminar usuario:{{item.username}}</a>
+        <a class="btn btn-primary" style="width: 100%;"
+            href="{% url 'apps.usuarios:eliminar_usuario' item.pk %}">Eliminar usuario:{{item.username}}</a>
         <div class="card">
             <div class="card-wrapper">
                 <div class="row align-items-center">

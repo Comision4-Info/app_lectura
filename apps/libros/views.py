@@ -28,6 +28,17 @@ class AgregarLibro(CreateView, LoginRequiredMixin):
     def form_valid(self, form):
         form.instance.colaborador = self.request.user
         return super().form_valid(form)
+    
+class ModificarLibro(LoginRequiredMixin, UpdateView):
+    model = Libros
+    fields = ['titulo', 'autor', 'descripcion', 'imagen', 'categoria']
+    template_name = 'libros/agregar_libro.html'
+    success_url = reverse_lazy('apps.libros:listar_libros')
+
+class EliminarLibro(LoginRequiredMixin,DeleteView):
+    model = Libros
+    template_name = 'libros/confirma_eliminar.html'
+    success_url = reverse_lazy('apps.libros:listar_libros')
 
 
 class ListarLibros(ListView):

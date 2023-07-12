@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block contenido %}
+
+<h1>Eliminar usuario</h1>
+
+<p>Seguro que desea eliminar el usuario?</p>
+
+<form method="POST">
+    {% csrf_token %}
+    <input type="submit" action="" value="Si, eliminar." />
+</form>
+<a href="{% url 'apps.usuarios:listar_usuarios' %}" class="btn btn-primary" style="font-size: small;">No, volver.</a>
+{% endblock %}
