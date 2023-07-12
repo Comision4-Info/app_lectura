@@ -5,7 +5,6 @@ from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 from .views import *
 
-
 app_name = 'apps.libros'
 
 urlpatterns = [
@@ -16,6 +15,7 @@ urlpatterns = [
     path("listar_libros/", ListarLibros.as_view(), name='listar_libros'),
     path("listar_por_categoria/<str:categoria>", ListarLibrosPorCategoria, name='listar_por_categoria'),
     path("libro_detalle/<int:id>", libro_detalle, name='libro_detalle'),
+    path("ordenar_por/", ordenar_libros_por ,name='ordenar_por'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 urlpatterns += staticfiles_urlpatterns()

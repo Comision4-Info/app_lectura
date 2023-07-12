@@ -100,3 +100,19 @@ def libro_detalle(request,id):
     }
     template_name = 'libros/libro.html'
     return render(request,template_name,contexto)
+
+# -------------Ejemplo de: Ordenar por ------------------------------
+def ordenar_libros_por(request):
+    orden = request.GET.get('orden', '')  # Obtener el parámetro 'orden' de la URL(para eso en html debe haber un elemento con name='orden' y un valor(value=''))
+    #Validamos lo que contiene value
+    if orden == 'fecha':
+        libros = Libros.objects.order_by('fecha_agregado')  # Ordenar por fecha(Si quisiera desc seria: ('-fecha_agregado'))
+    elif orden == 'titulo':
+        libros = Libros.objects.order_by('titulo')  # Ordenar por título(Si quisiera desc seria: ('-titulo'))
+    else:#Si no hay nada solo todos sin orden 
+        libros = Libros.objects.all()  # Obtener todos los artículos sin ordenar
+    
+    context = {
+        'libros': libros,
+    }
+    return render(request, 'libros/listar_libros.html', context)

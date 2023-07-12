@@ -17,6 +17,12 @@
             placeholder="Buscar libro" aria-label="Search" name="buscador">
         <button class="btn-primary" style="height: 25%; margin-top: 2.5%;" type="submit">Buscar</button>
     </form>
+    <form method="GET" action="{% url 'apps.libros:ordenar_por' %}">
+        <button class="btn-primary" name="orden" type="submit" value="fecha">Ordenar por
+            fecha</button>
+    <button class="btn-primary" name="orden" type="submit" value="titulo">Ordenar por
+        título</button>
+    </form>
     {% if libros %}
     <div class="container-fluid" style="margin-top: 2%">
         <div class="mbr-section-head">
