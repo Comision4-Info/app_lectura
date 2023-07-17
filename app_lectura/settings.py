@@ -65,11 +65,8 @@ WSGI_APPLICATION = "app_lectura.wsgi.application"
 #-----------------------------------------------------------------------------------
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.mysql",
-        "NAME": 'app_lectura',
-        "USER": 'root',
-        "PASSWORD": 'root',
-        "PORT": '3306'
+        "ENGINE": "django.db.backends.sqlite3",
+        "NAME": 'sqlite3.db',
     }
 }
 #-----------------------------------------------------------------------------------
