@@ -20,8 +20,8 @@
     <form method="GET" action="{% url 'apps.libros:ordenar_por' %}">
         <button class="btn-primary" name="orden" type="submit" value="fecha">Ordenar por
             fecha</button>
-    <button class="btn-primary" name="orden" type="submit" value="titulo">Ordenar por
-        título</button>
+        <button class="btn-primary" name="orden" type="submit" value="titulo">Ordenar por
+            título</button>
     </form>
     {% if libros %}
     <div class="container-fluid" style="margin-top: 2%">
@@ -57,5 +57,6 @@
                 </div>
             </div>
             {% endfor %}{% endif %}
+            {% include 'paginador.html' %}
 </section>
 {% endblock %}

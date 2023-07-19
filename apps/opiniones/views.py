@@ -14,13 +14,14 @@ def AgregarOpinion(request):
     if form.is_valid():
         form.save()
 
-    contexto ={
-        'form' : form,
+    contexto = {
+        'form': form,
     }
-    template_name= 'opiniones/agregar_opinion.html'
-    return render(request,template_name,contexto)
+    template_name = 'opiniones/agregar_opinion.html'
+    return render(request, template_name, contexto)
 
-class Modificar_opinion(LoginRequiredMixin,UpdateView):
+
+class Modificar_opinion(LoginRequiredMixin, UpdateView):
     model = Opinion
     fields = ['texto']
     template_name = 'opiniones/agregar_opinion.html'
@@ -28,9 +29,10 @@ class Modificar_opinion(LoginRequiredMixin,UpdateView):
 
     def get_queryset(self):
         queryset = super().get_queryset()
-        return queryset.filter(usuario = self.request.user)
-    
-class EliminarOpinion(LoginRequiredMixin,DeleteView):
+        return queryset.filter(usuario=self.request.user)
+
+
+class EliminarOpinion(LoginRequiredMixin, DeleteView):
     model = Opinion
     template_name = 'libros/confirma_eliminar.html'
-    success_url =reverse_lazy("apps.libros:listar_libros")
+    success_url = reverse_lazy("apps.libros:listar_libros")
