@@ -1,6 +1,10 @@
 {% extends 'base.html' %}
-{% block title %}
-<title>Registro</title>
+{% block titulo %}
+<title>Registrar usuario</title>
+{% endblock %}
+
+{% block navegacion %}
+{% include 'navegacion.html' %}
 {% endblock %}
 {% block contenido %}
 
@@ -9,7 +13,7 @@
         {{form.as_p}}
         <div class="col-auto">
             <button type="submit" class="btn btn-primary mb-3">Registrarse</button>
-          </div>
+        </div>
     </form>
 </div>
 {% endblock %}

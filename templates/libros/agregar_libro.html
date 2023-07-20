@@ -1,6 +1,14 @@
 {% extends 'base.html' %}
 {% load static %}
 
+{% block titulo %}
+<title>Libro</title>
+{% endblock %}
+
+{% block navegacion %}
+{% include 'navegacion.html' %}
+{% endblock %}
+
 {% block navegacion %}
 {% include 'navegacion.html' %}
 {% endblock %}
@@ -13,7 +21,6 @@
                 <form>
                     <div class="con">
                         <header class="head-form">
-                            <h2>Agregar libro</h2>
                             <p>Ingrese los datos y presione el botón de guardar, luego podrá ver su libro en la sección
                                 libros:</p>
                         </header>
